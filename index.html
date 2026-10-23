@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aim Trainer</title>
+  <meta name="description" content="A free, open-source aim trainer that runs in your browser. Gridshot, Flick, Microshot and Tracking modes.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- MENU -->
+  <main id="menu" class="screen active">
+    <header class="hero">
+      <h1>Aim<span>Trainer</span></h1>
+      <p>Free, open-source aim training in your browser. Pick a mode and go.</p>
+    </header>
+
+    <section id="modes" class="modes" aria-label="Game modes"></section>
+
+    <section class="settings" aria-label="Settings">
+      <label>
+        Duration
+        <select id="duration">
+          <option value="15">15 s</option>
+          <option value="30">30 s</option>
+          <option value="60">60 s</option>
+        </select>
+      </label>
+      <label>
+        Target size <output id="sizeOut">1.0x</output>
+        <input id="size" type="range" min="0.5" max="2" step="0.1" value="1">
+      </label>
+      <label class="check">
+        <input id="sound" type="checkbox" checked> Sound
+      </label>
+      <button id="resetScores" class="ghost" type="button">Reset high scores</button>
+    </section>
+
+    <footer>
+      <span>MIT licensed &middot; Esc = back to menu &middot; R = restart</span>
+    </footer>
+  </main>
+
+  <!-- PLAY -->
+  <section id="play" class="screen">
+    <div class="hud">
+      <div><small>Score</small><strong id="hudScore">0</strong></div>
+      <div><small id="hudModeName">Mode</small><strong id="hudTime">30.0</strong></div>
+      <div><small>Accuracy</small><strong id="hudAcc">0%</strong></div>
+    </div>
+    <canvas id="game"></canvas>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="results" class="screen overlay">
+    <div class="card">
+      <h2 id="resTitle">Results</h2>
+      <p id="resBest" class="badge" hidden>New high score!</p>
+      <dl>
+        <div><dt>Score</dt><dd id="resScore">0</dd></div>
+        <div><dt>Accuracy</dt><dd id="resAcc">0%</dd></div>
+        <div><dt id="resHitsLabel">Hits</dt><dd id="resHits">0</dd></div>
+        <div><dt id="resAvgLabel">Avg reaction</dt><dd id="resAvg">-</dd></div>
+      </dl>
+      <div class="actions">
+        <button id="again" type="button">Play again</button>
+        <button id="toMenu" class="ghost" type="button">Menu</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/game.js"></script>
+</body>
+</html>

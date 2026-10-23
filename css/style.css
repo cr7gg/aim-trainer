@@ -1,0 +1,176 @@
+:root {
+  --bg: #0e1116;
+  --panel: #161b22;
+  --panel-2: #1d242d;
+  --text: #e6edf3;
+  --muted: #8b98a5;
+  --accent: #ff4d5e;
+  --accent-2: #ffb86b;
+  --ok: #3fb950;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* ---------- Menu ---------- */
+#menu {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 40px 20px 24px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  letter-spacing: -0.02em;
+}
+.hero h1 span { color: var(--accent); }
+.hero p { color: var(--muted); margin: 8px 0 28px; }
+
+.modes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 16px;
+}
+
+.mode {
+  background: var(--panel);
+  border: 1px solid #222a33;
+  border-radius: var(--radius);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform .12s ease, border-color .12s ease;
+}
+.mode:hover { transform: translateY(-2px); border-color: var(--accent); }
+.mode h3 { margin: 0; font-size: 1.15rem; }
+.mode p { margin: 0; color: var(--muted); font-size: .92rem; flex: 1; line-height: 1.4; }
+.mode .best { font-size: .85rem; color: var(--accent-2); }
+
+button {
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+button:hover { filter: brightness(1.1); }
+button:focus-visible, select:focus-visible, input:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+}
+button.ghost {
+  background: transparent;
+  border: 1px solid #333c47;
+  color: var(--text);
+}
+
+.settings {
+  margin-top: 28px;
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 28px;
+  align-items: center;
+}
+.settings label { display: flex; align-items: center; gap: 10px; color: var(--muted); }
+.settings output { color: var(--text); min-width: 3ch; }
+select {
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid #333c47;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font: inherit;
+}
+input[type="range"] { accent-color: var(--accent); }
+input[type="checkbox"] { accent-color: var(--accent); width: 18px; height: 18px; }
+.settings button { margin-left: auto; padding: 7px 12px; font-size: .85rem; }
+
+footer { margin-top: 24px; color: var(--muted); font-size: .85rem; text-align: center; }
+
+/* ---------- Play ---------- */
+#play.active {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+}
+
+.hud {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 12px;
+  background: var(--panel);
+  border-bottom: 1px solid #222a33;
+  user-select: none;
+}
+.hud div { text-align: center; }
+.hud small { display: block; color: var(--muted); font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; }
+.hud strong { font-size: 1.6rem; font-variant-numeric: tabular-nums; }
+
+#game {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  display: block;
+  cursor: none;
+  touch-action: none;
+}
+
+/* ---------- Results ---------- */
+.overlay.active {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(8, 10, 14, .78);
+  backdrop-filter: blur(4px);
+  z-index: 10;
+}
+.card {
+  background: var(--panel);
+  border: 1px solid #222a33;
+  border-radius: 18px;
+  padding: 28px;
+  width: min(92vw, 440px);
+  text-align: center;
+}
+.card h2 { margin: 0 0 6px; }
+.badge {
+  display: inline-block;
+  margin: 4px 0 10px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(63, 185, 80, .15);
+  color: var(--ok);
+  font-weight: 600;
+  font-size: .9rem;
+}
+dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 16px 0 22px;
+}
+dl div { background: var(--panel-2); border-radius: 12px; padding: 12px; }
+dt { color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; }
+dd { margin: 4px 0 0; font-size: 1.6rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.actions { display: flex; gap: 10px; justify-content: center; }
